@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/Day 3 screenshot.jpeg" alt="My Image" width="400"/>
+  <img src="images/Day 3 screenshot.jpeg" alt="My Image" width="600" height="400"/>
 </p>
 
 # Day 3 Python Challenge
