@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="images/myimage.png" alt="My Image" width="400"/>
+  <img src="D\desktop\Day 3 screenshot.jpeg" alt="My Image" width="400"/>
 </p>
-
+"D:\desktop\Day 3 screenshot.jpeg"
 # Day 3 Python Challenge
 
 Welcome to **Day 3** of our Python Learning Series! 🎉
