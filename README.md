@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/myimage.png" alt="My Image" width="400"/>
+</p>
+
 # Day 3 Python Challenge
 
 Welcome to **Day 3** of our Python Learning Series! 🎉
