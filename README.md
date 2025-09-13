@@ -1,7 +1,7 @@
 # Day-1 Python Project 🐍
 
 <p align="center">
-  <img src="images/Day 1 Screenshot.png.JPG" alt="Day-1 Project" width="400"/>
+  <img src="images/Day 1 Screenshot.png.JPG" alt="Day-1 Project" width="1400"/>
 </p>
 
 ---
