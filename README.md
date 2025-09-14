@@ -26,3 +26,4 @@ This project demonstrates hands-on coding practice with screenshots of my progre
 - Resized to **500px width** for better readability in GitHub.  
 - This format will stay consistent for the next days.
 
+
