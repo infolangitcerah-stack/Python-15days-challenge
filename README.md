@@ -13,12 +13,6 @@ This project demonstrates hands-on coding practice with screenshots of my progre
 ### Screenshot 2
 <img src="image/Day 4 screenshot2.jpeg" width="500"/>
 
-### Screenshot 3
-<img src="image/Day 4 screenshot3.jpeg" width="500"/>
-
-### Screenshot 4
-<img src="image/Day 4 screenshot4.jpeg" width="500"/>
-
 ---
 
 ## 📝 Notes
