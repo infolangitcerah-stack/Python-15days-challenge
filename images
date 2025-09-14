@@ -1,5 +1,1 @@
-cd path/to/your/repo
-git add Day-6/image/*
-git commit -m "Add Day 6 images"
-git push origin main
 
