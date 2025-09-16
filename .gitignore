@@ -1,0 +1,7 @@
+# Ignore virtual env
+venv/
+__pycache__/
+*.pyc
+
+# Ignore local DB
+workouts.db
