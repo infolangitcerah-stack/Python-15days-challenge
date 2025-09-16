@@ -1,20 +1,18 @@
-# Ignore Python cache and compiled files
+# Python cache
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 
-# Ignore virtual environment
+# Virtual environment
 venv/
 
-# Ignore local database (generated at runtime)
-workouts.db
+# Databases
+*.db
 
-# Ignore system/IDE files
+# Streamlit cache
+.streamlit/
+
+# OS junk files
 .DS_Store
 Thumbs.db
-.vscode/
-.idea/
 
-# ✅ Do NOT ignore images/ (keep screenshots, logos, etc.)
 
