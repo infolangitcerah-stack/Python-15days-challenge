@@ -14,6 +14,17 @@ Part of **15 Days Python Challenge — Day 11** by *Social Eagle GenAI Architect
 - Download **CSV & PDF invoices**  
 - Customizable **accent color** and tax rate  
 
+## 📸 Screenshots
+
+### 🏠 Home Screen  
+![Home Screen](images/day11_screenshot1.jpeg)
+
+### 🛒 Select Items & Quantities  
+![Select Items](images/day11_screenshot2.jpeg)
+
+### 🧾 Bill Summary & Invoice Download  
+![Bill Summary](images/day11_screenshot3.jpeg)
+
 ---
 
 ## 🚀 How to Run
