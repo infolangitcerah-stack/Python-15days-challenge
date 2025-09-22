@@ -20,7 +20,7 @@
 ## 📸 Screenshot
 Here’s how the app looks:
 
-![Tic-Tac-Toe App](image/day12_screenshot1.png)
+![Tic-Tac-Toe App](image/day12_screenshot1.jpeg)
 
 ---
 
