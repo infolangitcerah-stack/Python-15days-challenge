@@ -9,18 +9,18 @@
 ---
 
 ## 📌 Features
-- 3×3 grid with big glowing buttons  
+- 3×3 grid with glowing futuristic buttons  
 - Two-player mode or vs computer (random AI)  
 - Winning line highlight ✨  
-- Reset button to start new games  
-- Futuristic neon design  
+- Reset button to restart the game  
+- Neon, modern design  
 
 ---
 
 ## 📸 Screenshot
-Here’s a preview of the app running:
+Here’s how the app looks:
 
-![Tic-Tac-Toe App](images/day12_screenshot1.png)
+![Tic-Tac-Toe App](image/day12_screenshot1.png)
 
 ---
 
@@ -30,3 +30,13 @@ Here’s a preview of the app running:
 3. Run:
    ```bash
    streamlit run day12_app.py
+
+✅ Notes
+
+Player ❌ always starts first.
+
+In Vs Computer mode, you play ❌ and the computer plays ⭕ randomly.
+
+Winning tiles glow to celebrate the victory 🏆.
+
+Reset anytime with the 🔄 Reset Board button.
