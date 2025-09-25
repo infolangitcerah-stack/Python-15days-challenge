@@ -1,0 +1,13 @@
+﻿[tool.black]
+line-length = 100
+target-version = ["py39","py310","py311","py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E","F","W","I"]  # pycodestyle, Pyflakes, warnings, import sort
+ignore = []
+exclude = ["**/venv/**","**/.venv/**","**/__pycache__/**","**/.pytest_cache/**"]
+
+[tool.ruff.format]
+quote-style = "double"
