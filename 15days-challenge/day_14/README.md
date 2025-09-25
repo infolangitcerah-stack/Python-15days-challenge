@@ -1,16 +1,25 @@
 # 🚀 Day 14 – Futuristic Stopwatch App
 
-Welcome to **Day 14** of the **15 Days Python Challenge** 🎉
-
-This project is a **Streamlit-based stopwatch** with a sleek, futuristic UI design:
-- ⏱️ Start, Pause, and Reset buttons
-- ✨ Neon cyberpunk colors
-- 🌌 Modern glowing header & time display
+Welcome to **Day 14** of the **15 Days Python Challenge** 🎉  
+This project is a **Streamlit Stopwatch App** designed with a sleek, futuristic UI.
 
 ---
 
-## 📸 Screenshot
-*(add one after running locally if you like)*
+## ✨ Features
+- ⏱️ Start, Pause, and Reset functionality  
+- ✨ Neon cyberpunk-inspired colors  
+- 🌌 Modern glowing header & time display  
+- 🧑‍🏫 Context-aware design (Coach Dom’s style!)  
+
+---
+
+## 📸 Screenshots
+
+### Stopwatch Running
+![Day 14 Stopwatch Running](images/day14_screenshot1.jpeg)
+
+### Game Over / Reset
+![Day 14 Stopwatch Reset](images/day14_screenshot2.jpeg)
 
 ---
 
@@ -19,3 +28,4 @@ This project is a **Streamlit-based stopwatch** with a sleek, futuristic UI desi
 1. Activate your virtual environment (if using one):
    ```bash
    .\venv\Scripts\activate
+
