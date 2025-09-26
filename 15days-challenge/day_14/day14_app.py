@@ -6,7 +6,8 @@ import time
 # -------------------------------
 st.set_page_config(page_title="Futuristic Stopwatch", page_icon="⏱️", layout="centered")
 
-st.markdown("""
+st.markdown(
+    """
     <style>
     body {
         background-color: #0D1117;
@@ -55,13 +56,18 @@ st.markdown("""
         box-shadow: 0px 0px 20px #ff00f7;
     }
     </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # -------------------------------
 # 📌 Header
 # -------------------------------
 st.markdown("<div class='header'>🚀 Day 14 - Stop Watch Challenge</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-header'>Social Eagle GenAI Architect | Built by Coach Dom | 15 Days Python Challenge</div>", unsafe_allow_html=True)
+st.markdown(
+    "<div class='sub-header'>Social Eagle GenAI Architect | Built by Coach Dom | 15 Days Python Challenge</div>",
+    unsafe_allow_html=True,
+)
 
 # -------------------------------
 # ⏱️ Stopwatch State
@@ -105,8 +111,12 @@ if st.session_state.running:
     # Live update loop
     while st.session_state.running:
         elapsed_time = time.time() - st.session_state.start_time
-        placeholder.markdown(f"<div class='time-display'>{elapsed_time:.2f} s</div>", unsafe_allow_html=True)
+        placeholder.markdown(
+            f"<div class='time-display'>{elapsed_time:.2f} s</div>", unsafe_allow_html=True
+        )
         time.sleep(0.1)
-        st.rerun()   # use st.rerun if Streamlit >= 1.25, else st.experimental_rerun
+        st.rerun()  # use st.rerun if Streamlit >= 1.25, else st.experimental_rerun
 else:
-    placeholder.markdown(f"<div class='time-display'>{st.session_state.elapsed:.2f} s</div>", unsafe_allow_html=True)
+    placeholder.markdown(
+        f"<div class='time-display'>{st.session_state.elapsed:.2f} s</div>", unsafe_allow_html=True
+    )
