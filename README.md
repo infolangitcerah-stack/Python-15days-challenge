@@ -32,6 +32,20 @@
 | 15 | [`15days-challenge/day_15`](15days-challenge/day_15) | 🐍 Day 15 – Snake Game |
 
 ---
+## 🔮 What’s Next
+This challenge is complete ✅  
+Next, I’ll:
+- Start a larger project (web app or automation tool).
+- Explore data visualization & data science with Python.
+- Keep using CI/CD + linting for clean, professional code.
+
+  ✨🌱✨🌱✨🌱✨🌱✨🌱✨
+
+## 📝 My Learning:
+- Built consistency by coding every day.
+- Learned to balance speed (daily goals) vs. quality (linting & formatting).
+- Discovered how CI tools (Ruff, Black, GitHub Actions) make projects professional.
+- Biggest win: confidence to start bigger Python projects 🚀
 
 ✨🌱✨🌱✨🌱✨🌱✨🌱✨
 
