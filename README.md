@@ -1,8 +1,13 @@
-# 🐍 Python 15 Days Challenge 🚀  
+# 🐍 Python 15 Days Challenge 🚀✨  
 
-[![Journey Badge](https://img.shields.io/badge/🌱_15--Day_Journey-Learning_|_Growth_|_Collaboration-blueviolet?style=for-the-badge)]( )  
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Lint](https://github.com/infolangitcerah-stack/Python-15days-challenge/actions/workflows/ci.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-> 🌱 A 15-day journey of learning, growth, and collaboration — with gratitude to my mentors and peers 🙌  
+[![Journey Badge](https://img.shields.io/badge/🌱_15--Day_Journey-Learning_|_Growth_|_Collaboration-blueviolet?style=for-the-badge)]( )
+
+> 🌱 A 15-day journey of building Python projects — from fundamentals to GUIs and games.  
+> 🙌 With gratitude to mentors and peers who supported this challenge.
 
 ---
 
