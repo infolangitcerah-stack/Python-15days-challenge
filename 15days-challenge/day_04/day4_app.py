@@ -1,5 +1,5 @@
-import streamlit as st
 import plotly.graph_objects as go
+import streamlit as st
 
 # -------------------------------------------------
 # Contexts
@@ -48,7 +48,9 @@ if st.button("Calculate BMI"):
         elif 18.5 <= bmi < 25:
             category = "Normal ✅"
             color = "green"
-            recommendation = "💪 Keep up your healthy lifestyle with balanced diet and regular exercise."
+            recommendation = (
+                "💪 Keep up your healthy lifestyle with balanced diet and regular exercise."
+            )
         else:
             category = "Overweight ⚠️"
             color = "red"
@@ -62,7 +64,7 @@ if st.button("Calculate BMI"):
         st.markdown(f"**BMI Value:** `{bmi_value}`")
         st.markdown(
             f"<div style='color:{color}; font-size:26px; font-weight:bold;'>Category: {category}</div>",
-            unsafe_allow_html=True
+            unsafe_allow_html=True,
         )
 
         # -------------------------
@@ -70,32 +72,31 @@ if st.button("Calculate BMI"):
         # -------------------------
         st.subheader("📊 BMI Speedometer")
 
-        fig = go.Figure(go.Indicator(
-            mode="gauge+number",
-            value=bmi_value,
-            title={'text': "BMI", 'font': {'size': 20}},
-            gauge={
-                'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkgray"},
-                'bar': {'color': "black", 'thickness': 0.25},
-                'steps': [
-                    {'range': [0, 18.5], 'color': "orange"},
-                    {'range': [18.5, 25], 'color': "green"},
-                    {'range': [25, 40], 'color': "red"}
-                ],
-                'threshold': {
-                    'line': {'color': "black", 'width': 4},
-                    'thickness': 0.75,
-                    'value': bmi_value
-                }
-            }
-        ))
+        fig = go.Figure(
+            go.Indicator(
+                mode="gauge+number",
+                value=bmi_value,
+                title={"text": "BMI", "font": {"size": 20}},
+                gauge={
+                    "axis": {"range": [0, 40], "tickwidth": 1, "tickcolor": "darkgray"},
+                    "bar": {"color": "black", "thickness": 0.25},
+                    "steps": [
+                        {"range": [0, 18.5], "color": "orange"},
+                        {"range": [18.5, 25], "color": "green"},
+                        {"range": [25, 40], "color": "red"},
+                    ],
+                    "threshold": {
+                        "line": {"color": "black", "width": 4},
+                        "thickness": 0.75,
+                        "value": bmi_value,
+                    },
+                },
+            )
+        )
 
         # Compact layout
         fig.update_layout(
-            autosize=False,
-            width=400,
-            height=250,
-            margin=dict(l=30, r=30, t=50, b=30)
+            autosize=False, width=400, height=250, margin=dict(l=30, r=30, t=50, b=30)
         )
 
         st.plotly_chart(fig, use_container_width=False)
@@ -104,11 +105,13 @@ if st.button("Calculate BMI"):
         # Interpretation
         # -------------------------
         st.subheader("📑 BMI Categories")
-        st.markdown("""
+        st.markdown(
+            """
         - 🟠 **Underweight:** BMI < 18.5  
         - 🟢 **Normal:** 18.5 – 24.9  
         - 🔴 **Overweight:** BMI ≥ 25  
-        """)
+        """
+        )
 
         # -------------------------
         # Health Recommendation
@@ -118,12 +121,3 @@ if st.button("Calculate BMI"):
 
     else:
         st.error("⚠️ Please enter valid height and weight values.")
-
-
-
-
-
-
-
-
-

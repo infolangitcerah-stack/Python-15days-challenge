@@ -94,6 +94,7 @@ if "answered" not in st.session_state:
 if "selected" not in st.session_state:
     st.session_state.selected = None
 
+
 # ---------- Helper functions ----------
 def submit_answer():
     if st.session_state.selected is None:
@@ -152,9 +153,7 @@ st.write("### " + q["question"])
 st.session_state.selected = st.radio(
     "Select an answer:",
     q["options"],
-    index=0
-    if st.session_state.selected is None
-    else q["options"].index(st.session_state.selected),
+    index=0 if st.session_state.selected is None else q["options"].index(st.session_state.selected),
 )
 
 # Buttons

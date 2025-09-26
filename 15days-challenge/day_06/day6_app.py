@@ -1,6 +1,6 @@
-import streamlit as st
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+import streamlit as st
 
 # ------------------------------
 # HEADER
@@ -55,7 +55,7 @@ with tab1:
             step=0.1,
             format="%.2f",
             value=st.session_state.intake[i],
-            key=f"day_{i}"
+            key=f"day_{i}",
         )
 
 # ------------------------------
@@ -64,10 +64,12 @@ with tab1:
 with tab2:
     st.subheader("📊 Daily Progress vs Goal")
 
-    df = pd.DataFrame({
-        "Day": days,
-        "Intake": [round(x, 2) for x in st.session_state.intake],
-    })
+    df = pd.DataFrame(
+        {
+            "Day": days,
+            "Intake": [round(x, 2) for x in st.session_state.intake],
+        }
+    )
     df["Goal"] = DAILY_GOAL
     df["Progress %"] = (df["Intake"] / DAILY_GOAL * 100).clip(0, 100)
 

@@ -8,17 +8,15 @@
 
 import random
 import time
+
 import streamlit as st
 
 # ------------------------------- Page Setup -------------------------------
-st.set_page_config(
-    page_title="Rock, Paper, Scissors Game",
-    page_icon="🪨",
-    layout="centered"
-)
+st.set_page_config(page_title="Rock, Paper, Scissors Game", page_icon="🪨", layout="centered")
 
 # ------------------------------- Styles (Neo-Cyberpunk + Larger Fonts) -------------------------------
-st.markdown("""
+st.markdown(
+    """
 <style>
 :root{
   --bg:#0a0f1c;
@@ -99,7 +97,10 @@ h3{ font-size: 1.5rem; text-shadow: 0 0 12px rgba(62,163,255,.35); }
 .bar.lose > span{ background: linear-gradient(90deg, var(--neon-magenta), var(--neon-orange)); }
 .bar.draw > span{ background: linear-gradient(90deg, var(--neon-orange), var(--neon-blue)); }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
+
 
 # ------------------------------- State -------------------------------
 def _init_state():
@@ -108,27 +109,37 @@ def _init_state():
     st.session_state.setdefault("draws", 0)
     st.session_state.setdefault("history", [])
 
+
 _init_state()
 
 # ------------------------------- Helpers -------------------------------
 CHOICES = ["🪨 Rock", "📜 Paper", "✂️ Scissors"]
 
+
 def parse_choice(label: str) -> str:
     return "rock" if "Rock" in label else "paper" if "Paper" in label else "scissors"
+
 
 def get_computer_choice() -> str:
     return random.choice(["rock", "paper", "scissors"])
 
+
 def decide_winner(user: str, cpu: str) -> str:
-    if user == cpu: return "draw"
-    wins = {("rock","scissors"),("paper","rock"),("scissors","paper")}
-    return "win" if (user,cpu) in wins else "lose"
+    if user == cpu:
+        return "draw"
+    wins = {("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")}
+    return "win" if (user, cpu) in wins else "lose"
+
 
 def record_round(user: str, cpu: str, outcome: str) -> None:
     st.session_state.history.append({"user": user, "cpu": cpu, "outcome": outcome})
-    if outcome=="win": st.session_state.user_score += 1
-    elif outcome=="lose": st.session_state.cpu_score += 1
-    else: st.session_state.draws += 1
+    if outcome == "win":
+        st.session_state.user_score += 1
+    elif outcome == "lose":
+        st.session_state.cpu_score += 1
+    else:
+        st.session_state.draws += 1
+
 
 def reset_scores():
     st.session_state.user_score = 0
@@ -136,13 +147,14 @@ def reset_scores():
     st.session_state.draws = 0
     st.session_state.history = []
 
+
 # ------------------------------- Header -------------------------------
 
 # Spacer at very top
 st.markdown("<div style='height:80px;'></div>", unsafe_allow_html=True)
 
 # Title & Contexts (output on page)
-st.markdown("# 🪨📜✂️ Title: \"Rock, Paper, Scissors Game\"")
+st.markdown('# 🪨📜✂️ Title: "Rock, Paper, Scissors Game"')
 st.markdown(
     """
     <div style="text-align:center">
@@ -152,66 +164,95 @@ st.markdown(
         <h3>Coach Dom</h3>
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 st.markdown("## 🛰️ Greetings, Architect!")
 st.markdown(
     "<div class='card'>Prepare to test your intuition against the <b>A.I. Protocol</b>. "
     "Select your move. Scores persist during your session. Good luck.</div>",
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 # ------------------------------- Scoreboard -------------------------------
-c1,c2,c3,c4 = st.columns([1,1,1,1])
-with c1: st.markdown(f"**You** <span class='badge'>{st.session_state.user_score}</span>", unsafe_allow_html=True)
-with c2: st.markdown(f"**A.I.** <span class='badge'>{st.session_state.cpu_score}</span>", unsafe_allow_html=True)
-with c3: st.markdown(f"**Draws** <span class='badge'>{st.session_state.draws}</span>", unsafe_allow_html=True)
+c1, c2, c3, c4 = st.columns([1, 1, 1, 1])
+with c1:
+    st.markdown(
+        f"**You** <span class='badge'>{st.session_state.user_score}</span>", unsafe_allow_html=True
+    )
+with c2:
+    st.markdown(
+        f"**A.I.** <span class='badge'>{st.session_state.cpu_score}</span>", unsafe_allow_html=True
+    )
+with c3:
+    st.markdown(
+        f"**Draws** <span class='badge'>{st.session_state.draws}</span>", unsafe_allow_html=True
+    )
 with c4:
-    if st.button("🔄 Reset Score"): reset_scores()
+    if st.button("🔄 Reset Score"):
+        reset_scores()
 
 # ------------------------------- Game Buttons -------------------------------
-colA,colB,colC = st.columns(3)
-user_pick=None
-if colA.button(CHOICES[0]): user_pick=parse_choice(CHOICES[0])
-if colB.button(CHOICES[1]): user_pick=parse_choice(CHOICES[1])
-if colC.button(CHOICES[2]): user_pick=parse_choice(CHOICES[2])
+colA, colB, colC = st.columns(3)
+user_pick = None
+if colA.button(CHOICES[0]):
+    user_pick = parse_choice(CHOICES[0])
+if colB.button(CHOICES[1]):
+    user_pick = parse_choice(CHOICES[1])
+if colC.button(CHOICES[2]):
+    user_pick = parse_choice(CHOICES[2])
 
 # ------------------------------- Round Logic -------------------------------
-outcome_text=""; cpu_choice=None
+outcome_text = ""
+cpu_choice = None
 if user_pick:
     time.sleep(0.05)
-    cpu_choice=get_computer_choice()
-    result=decide_winner(user_pick,cpu_choice)
-    record_round(user_pick,cpu_choice,result)
-    if result=="win": outcome_text="🟢 A flawless victory, Architect!"
-    elif result=="lose": outcome_text="🟣 A minor setback. The A.I. adapts. Try again!"
-    else: outcome_text="🟠 A perfect stalemate. Awaiting your next command."
+    cpu_choice = get_computer_choice()
+    result = decide_winner(user_pick, cpu_choice)
+    record_round(user_pick, cpu_choice, result)
+    if result == "win":
+        outcome_text = "🟢 A flawless victory, Architect!"
+    elif result == "lose":
+        outcome_text = "🟣 A minor setback. The A.I. adapts. Try again!"
+    else:
+        outcome_text = "🟠 A perfect stalemate. Awaiting your next command."
 
 # ------------------------------- Outcome -------------------------------
 st.markdown("<div class='card'>", unsafe_allow_html=True)
 if user_pick:
-    sym={"rock":"🪨 Rock","paper":"📜 Paper","scissors":"✂️ Scissors"}
+    sym = {"rock": "🪨 Rock", "paper": "📜 Paper", "scissors": "✂️ Scissors"}
     st.markdown(f"**You:** {sym[user_pick]} | **A.I.:** {sym[cpu_choice]}")
-st.markdown(f"<div class='outcome'>{outcome_text or 'Make your move above.'}</div>", unsafe_allow_html=True)
+st.markdown(
+    f"<div class='outcome'>{outcome_text or 'Make your move above.'}</div>", unsafe_allow_html=True
+)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # ------------------------------- History -------------------------------
 with st.expander("Round History (latest first)"):
     if st.session_state.history:
-        sym={"rock":"🪨 Rock","paper":"📜 Paper","scissors":"✂️ Scissors"}
+        sym = {"rock": "🪨 Rock", "paper": "📜 Paper", "scissors": "✂️ Scissors"}
         for rec in reversed(st.session_state.history[-10:]):
-            st.markdown(f"- You: **{sym[rec['user']]}** | A.I.: **{sym[rec['cpu']]}** → **{rec['outcome'].upper()}**")
+            st.markdown(
+                f"- You: **{sym[rec['user']]}** | A.I.: **{sym[rec['cpu']]}** → **{rec['outcome'].upper()}**"
+            )
     else:
         st.caption("No rounds yet. Engage when ready, Architect.")
 
 # ------------------------------- Chart -------------------------------
-total=len(st.session_state.history)
-if total>=5:
-    wins,losses,draws=st.session_state.user_score,st.session_state.cpu_score,st.session_state.draws
-    def pct(x): return 0 if total==0 else int(100*x/total)
+total = len(st.session_state.history)
+if total >= 5:
+    wins, losses, draws = (
+        st.session_state.user_score,
+        st.session_state.cpu_score,
+        st.session_state.draws,
+    )
+
+    def pct(x):
+        return 0 if total == 0 else int(100 * x / total)
+
     st.markdown("#### Session Summary")
-    st.markdown(f"""
+    st.markdown(
+        f"""
 <div class='bar-wrap'>
   <div class='bar-row'><div class='bar-label'>Wins</div>
     <div class='bar win'><span style='width:{pct(wins)}%'></span></div>
@@ -223,7 +264,6 @@ if total>=5:
     <div class='bar draw'><span style='width:{pct(draws)}%'></span></div>
     <div class='bar-label'>{draws}/{total}</div></div>
 </div>
-""", unsafe_allow_html=True)
-
-
-
+""",
+        unsafe_allow_html=True,
+    )

@@ -1,15 +1,15 @@
 # day7_app.py
-import streamlit as st
-import sqlite3
-import pandas as pd
-from datetime import datetime
 import random
-import itertools
-import time
+import sqlite3
+from datetime import datetime
+
+import pandas as pd
+import streamlit as st
 
 # Optional plotting import (graceful fallback)
 try:
     import plotly.express as px
+
     PLOTLY_AVAILABLE = True
 except Exception:
     px = None
@@ -20,10 +20,12 @@ except Exception:
 # -------------------
 DB_FILE = "workouts.db"
 
+
 def init_db():
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
-    c.execute("""
+    c.execute(
+        """
         CREATE TABLE IF NOT EXISTS workouts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             timestamp TEXT,
@@ -32,9 +34,11 @@ def init_db():
             reps INTEGER,
             weight REAL
         )
-    """)
+    """
+    )
     conn.commit()
     conn.close()
+
 
 def log_workout(exercise: str, sets: int, reps: int, weight: float):
     ts = datetime.utcnow().isoformat(sep=" ", timespec="seconds")
@@ -42,10 +46,11 @@ def log_workout(exercise: str, sets: int, reps: int, weight: float):
     c = conn.cursor()
     c.execute(
         "INSERT INTO workouts (timestamp, exercise_name, sets, reps, weight) VALUES (?,?,?,?,?)",
-        (ts, exercise, sets, reps, weight)
+        (ts, exercise, sets, reps, weight),
     )
     conn.commit()
     conn.close()
+
 
 def fetch_history_df() -> pd.DataFrame:
     conn = sqlite3.connect(DB_FILE)
@@ -54,12 +59,15 @@ def fetch_history_df() -> pd.DataFrame:
     finally:
         conn.close()
     if df.empty:
-        return pd.DataFrame(columns=['id','timestamp','exercise_name','sets','reps','weight','date','volume'])
+        return pd.DataFrame(
+            columns=["id", "timestamp", "exercise_name", "sets", "reps", "weight", "date", "volume"]
+        )
     # Handle mixed timestamp formats safely
-    df['timestamp'] = pd.to_datetime(df['timestamp'], errors="coerce", format="mixed")
-    df['date'] = df['timestamp'].dt.date
-    df['volume'] = df['sets'] * df['reps'] * df['weight']
+    df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce", format="mixed")
+    df["date"] = df["timestamp"].dt.date
+    df["volume"] = df["sets"] * df["reps"] * df["weight"]
     return df
+
 
 # ✅ Initialize DB after functions are defined
 init_db()
@@ -85,7 +93,10 @@ st.markdown(
 # Header
 # -------------------
 st.markdown('<div class="big-title">🏋️ Gym Workout Logger</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">🚀 Social Eagle GenAI Architect | 15 Days Python Challenge | Coach Dom</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="sub-title">🚀 Social Eagle GenAI Architect | 15 Days Python Challenge | Coach Dom</div>',
+    unsafe_allow_html=True,
+)
 
 # -------------------
 # Motivational Badge (cycles every rerun)
@@ -98,7 +109,10 @@ badges = [
     ("🚀 Progress Over Perfection", "#9B59B6"),
 ]
 text, color = random.choice(badges)
-st.markdown(f'<div class="badge" style="background-color:{color}; color:white;">{text}</div>', unsafe_allow_html=True)
+st.markdown(
+    f'<div class="badge" style="background-color:{color}; color:white;">{text}</div>',
+    unsafe_allow_html=True,
+)
 
 # -------------------
 # Tabs
@@ -109,11 +123,18 @@ tab1, tab2, tab3, tab4 = st.tabs(["📝 Log Workout", "📜 History", "📈 Prog
 with tab1:
     st.subheader("Log a New Workout")
     exercises = [
-        "Bench Press", "Squat", "Deadlift", "Pull-ups", "Push-ups",
-        "Overhead Press", "Bicep Curls", "Tricep Dips", "Plank"
+        "Bench Press",
+        "Squat",
+        "Deadlift",
+        "Pull-ups",
+        "Push-ups",
+        "Overhead Press",
+        "Bicep Curls",
+        "Tricep Dips",
+        "Plank",
     ]
     with st.form("log_form", clear_on_submit=False):
-        colA, colB, colC = st.columns([3,1,1])
+        colA, colB, colC = st.columns([3, 1, 1])
         with colA:
             selected = st.selectbox("Exercise", exercises + ["Other (type below)"])
             if selected == "Other (type below)":
@@ -142,8 +163,8 @@ with tab2:
     if df_hist.empty:
         st.info("No workouts logged yet — use the Log tab to add your first entry.")
     else:
-        display = df_hist[['date', 'exercise_name', 'volume']].rename(
-            columns={'date':'Date', 'exercise_name':'Exercise', 'volume':'Volume'}
+        display = df_hist[["date", "exercise_name", "volume"]].rename(
+            columns={"date": "Date", "exercise_name": "Exercise", "volume": "Volume"}
         )
         st.dataframe(display.reset_index(drop=True), use_container_width=True)
 
@@ -154,23 +175,28 @@ with tab3:
     if df_progress.empty:
         st.info("No data yet. Log workouts to see progress here.")
     else:
-        df_progress['week'] = df_progress['timestamp'].dt.strftime("%Y-%U")
-        weekly = df_progress.groupby('week', as_index=False)['volume'].sum().sort_values('week')
+        df_progress["week"] = df_progress["timestamp"].dt.strftime("%Y-%U")
+        weekly = df_progress.groupby("week", as_index=False)["volume"].sum().sort_values("week")
         if PLOTLY_AVAILABLE:
             try:
                 fig = px.bar(
-                    weekly, x='week', y='volume',
-                    title='Total Training Volume per Week',
-                    labels={'week':'Week','volume':'Volume (sets×reps×weight)'},
-                    color='volume', color_continuous_scale='Blues'
+                    weekly,
+                    x="week",
+                    y="volume",
+                    title="Total Training Volume per Week",
+                    labels={"week": "Week", "volume": "Volume (sets×reps×weight)"},
+                    color="volume",
+                    color_continuous_scale="Blues",
                 )
                 st.plotly_chart(fig, use_container_width=True)
             except Exception:
                 st.warning("Plotly failed to render; showing fallback chart.")
-                st.bar_chart(weekly.set_index('week')['volume'])
+                st.bar_chart(weekly.set_index("week")["volume"])
         else:
-            st.warning("Plotly not installed — showing fallback chart. Install with `pip install plotly`")
-            st.bar_chart(weekly.set_index('week')['volume'])
+            st.warning(
+                "Plotly not installed — showing fallback chart. Install with `pip install plotly`"
+            )
+            st.bar_chart(weekly.set_index("week")["volume"])
 
 # --- Tab 4: Coach Dom ---
 with tab4:
@@ -193,6 +219,7 @@ with tab4:
 # --- Diagnostics ---
 with st.expander("Diagnostics / Quick checks (open if something is missing)"):
     import sys
+
     st.write("Python:", sys.version.splitlines()[0])
     st.write("Streamlit version:", st.__version__)
     st.write("Plotly available:", PLOTLY_AVAILABLE)
@@ -203,10 +230,3 @@ with st.expander("Diagnostics / Quick checks (open if something is missing)"):
     except Exception as e:
         st.error("Error reading DB — see terminal for full traceback.")
         st.exception(e)
-
-
-
-
-
-
-

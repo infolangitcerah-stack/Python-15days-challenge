@@ -25,7 +25,7 @@ st.markdown(
         }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 # Title
@@ -39,15 +39,15 @@ st.markdown(
         <b>Day 8 | Social Eagle GenAI Architect | 15 Days Python Challenge</b>
     </p>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 # Static conversion rates (example only)
 rates = {
-    "USD": 1.00,      # Base
-    "INR": 83.00,     # 1 USD = 83 INR
-    "EUR": 0.92,      # 1 USD = 0.92 EUR
-    "GBP": 0.80       # 1 USD = 0.80 GBP
+    "USD": 1.00,  # Base
+    "INR": 83.00,  # 1 USD = 83 INR
+    "EUR": 0.92,  # 1 USD = 0.92 EUR
+    "GBP": 0.80,  # 1 USD = 0.80 GBP
 }
 
 currencies = list(rates.keys())
@@ -63,7 +63,7 @@ amount = st.number_input("Enter amount", min_value=0.0, format="%.2f")
 
 # Conversion
 if amount:
-    usd_amount = amount / rates[from_currency]   # convert to USD first
+    usd_amount = amount / rates[from_currency]  # convert to USD first
     converted = usd_amount * rates[to_currency]
     st.success(f"{amount:.2f} {from_currency} = {converted:.2f} {to_currency}")
 
@@ -75,5 +75,5 @@ st.markdown(
         🚀 Built with Streamlit | Styled for a Futuristic Look ✨
     </p>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )

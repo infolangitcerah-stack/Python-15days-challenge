@@ -1,5 +1,5 @@
-import streamlit as st
 import plotly.graph_objects as go
+import streamlit as st
 
 # ======= Page Config =======
 st.set_page_config(page_title="Dom's Unit Converter", layout="centered")
@@ -16,7 +16,7 @@ st.markdown(
         <h3>👨‍🏫 Coach Dom</h3>
     </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 st.write("")
@@ -24,26 +24,29 @@ st.write("")
 # ======= Converter Section =======
 st.title("🔄 Unit Converter")
 converter_type = st.selectbox(
-    "Choose what you want to convert:",
-    ["Currency 💵", "Temperature 🌡️", "Length 📏", "Weight ⚖️"]
+    "Choose what you want to convert:", ["Currency 💵", "Temperature 🌡️", "Length 📏", "Weight ⚖️"]
 )
+
 
 # --- Helper: Create Gauge Chart ---
 def gauge_chart(value, title, max_value):
-    fig = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=value,
-        title={"text": title},
-        gauge={
-            "axis": {"range": [None, max_value]},
-            "bar": {"color": "limegreen"},
-            "bgcolor": "white",
-            "borderwidth": 2,
-            "bordercolor": "gray"
-        }
-    ))
+    fig = go.Figure(
+        go.Indicator(
+            mode="gauge+number",
+            value=value,
+            title={"text": title},
+            gauge={
+                "axis": {"range": [None, max_value]},
+                "bar": {"color": "limegreen"},
+                "bgcolor": "white",
+                "borderwidth": 2,
+                "bordercolor": "gray",
+            },
+        )
+    )
     fig.update_layout(height=250, margin=dict(t=20, b=20, l=20, r=20))
     return fig
+
 
 # ======= Currency =======
 if converter_type == "Currency 💵":
@@ -60,7 +63,9 @@ if converter_type == "Currency 💵":
         converted = round(amount * rates[currency], 1)
 
         st.metric(label=f"Converted to {currency}", value=f"{converted:.1f} {currency}")
-        st.plotly_chart(gauge_chart(converted, f"{currency} Value", converted * 2 if converted > 0 else 1))
+        st.plotly_chart(
+            gauge_chart(converted, f"{currency} Value", converted * 2 if converted > 0 else 1)
+        )
 
 # ======= Temperature =======
 elif converter_type == "Temperature 🌡️":
@@ -73,7 +78,7 @@ elif converter_type == "Temperature 🌡️":
     with col2:
         scale = st.selectbox("Convert to:", ["°F", "K"])
         if scale == "°F":
-            result = round(temp_c * 9/5 + 32, 1)
+            result = round(temp_c * 9 / 5 + 32, 1)
             max_val = 120
         else:
             result = round(temp_c + 273.15, 1)
@@ -127,6 +132,3 @@ elif converter_type == "Weight ⚖️":
 
         st.metric(label=f"Converted to {unit}", value=f"{result:.1f} {symbol}")
         st.plotly_chart(gauge_chart(result, f"{unit}", max_val))
-
-
-

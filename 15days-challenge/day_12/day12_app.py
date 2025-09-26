@@ -2,13 +2,15 @@
 # Context: Tic-Tac-Toe ❌⭕ | Social Eagle GenAI Architect | 15 Days Python Challenge
 # Day 12 Assignment | Coach Dom
 
-import streamlit as st
 import random
+
+import streamlit as st
 
 st.set_page_config(page_title="Futuristic Tic-Tac-Toe ❌⭕", page_icon="✨", layout="centered")
 
 # ----------------------- Styling (Futuristic) -----------------------
-st.markdown("""
+st.markdown(
+    """
 <style>
 /* Neon gradient background */
 [data-testid="stAppViewContainer"] {
@@ -70,24 +72,35 @@ h1, h2, h3 {
   color:#a9c8ff; font-size:.92rem;
 }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ----------------------- Helpers -----------------------
 WIN_LINES = [
-    (0,1,2),(3,4,5),(6,7,8),     # rows
-    (0,3,6),(1,4,7),(2,5,8),     # cols
-    (0,4,8),(2,4,6)              # diagonals
+    (0, 1, 2),
+    (3, 4, 5),
+    (6, 7, 8),  # rows
+    (0, 3, 6),
+    (1, 4, 7),
+    (2, 5, 8),  # cols
+    (0, 4, 8),
+    (2, 4, 6),  # diagonals
 ]
 
-def check_winner(board):
-    for a,b,c in WIN_LINES:
-        if board[a] and board[a] == board[b] == board[c]:
-            return board[a], (a,b,c)  # 'X' or 'O', winning combo
-    if "" not in board:
-        return "Draw", ()             # Draw
-    return None, ()                   # No winner yet
 
-def toggle(p): return "O" if p == "X" else "X"
+def check_winner(board):
+    for a, b, c in WIN_LINES:
+        if board[a] and board[a] == board[b] == board[c]:
+            return board[a], (a, b, c)  # 'X' or 'O', winning combo
+    if "" not in board:
+        return "Draw", ()  # Draw
+    return None, ()  # No winner yet
+
+
+def toggle(p):
+    return "O" if p == "X" else "X"
+
 
 def make_move(idx):
     if st.session_state.winner:  # game over
@@ -99,10 +112,13 @@ def make_move(idx):
         if not winner:
             st.session_state.player = toggle(st.session_state.player)
 
+
 def computer_move_random():
-    if st.session_state.winner: return
-    empties = [i for i,v in enumerate(st.session_state.board) if v==""]
-    if not empties: return
+    if st.session_state.winner:
+        return
+    empties = [i for i, v in enumerate(st.session_state.board) if v == ""]
+    if not empties:
+        return
     idx = random.choice(empties)
     st.session_state.board[idx] = "O"
     winner, combo = check_winner(st.session_state.board)
@@ -110,11 +126,13 @@ def computer_move_random():
     if not winner:
         st.session_state.player = toggle(st.session_state.player)
 
+
 def reset():
-    st.session_state.board   = [""]*9
-    st.session_state.player  = "X"
-    st.session_state.winner  = None
+    st.session_state.board = [""] * 9
+    st.session_state.player = "X"
+    st.session_state.winner = None
     st.session_state.win_combo = ()
+
 
 # ----------------------- State -----------------------
 if "board" not in st.session_state:
@@ -126,13 +144,13 @@ if "mode" not in st.session_state:
 st.title("✨ Futuristic Tic-Tac-Toe ❌⭕")
 st.caption("Social Eagle GenAI Architect • 15 Days Python Challenge • Day 12 • Coach Dom")
 
-left, right = st.columns([1,1])
+left, right = st.columns([1, 1])
 with left:
     st.session_state.mode = st.selectbox(
         "Game Mode",
         ["Two Players", "Vs Computer (random AI)"],
         index=0,
-        help="Choose to play with a friend or versus a simple random-move computer."
+        help="Choose to play with a friend or versus a simple random-move computer.",
     )
 with right:
     if st.button("🔄 Reset Board", use_container_width=True):
@@ -143,43 +161,57 @@ if not st.session_state.winner:
     st.markdown(
         f"**Turn:** {'❌ X' if st.session_state.player=='X' else '⭕ O'} "
         f"<span class='badge'>{st.session_state.mode}</span>",
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 else:
     if st.session_state.winner == "Draw":
         st.markdown("**Result:** 🤝 Draw!", unsafe_allow_html=True)
     else:
-        st.markdown(f"**Winner:** {'❌ X' if st.session_state.winner=='X' else '⭕ O'} 🏆", unsafe_allow_html=True)
+        st.markdown(
+            f"**Winner:** {'❌ X' if st.session_state.winner=='X' else '⭕ O'} 🏆",
+            unsafe_allow_html=True,
+        )
+
 
 # ----------------------- Board -----------------------
 def render_board(interactive=True):
     for r in range(3):
         cols = st.columns(3, gap="small")
         for c in range(3):
-            i = r*3 + c
+            i = r * 3 + c
             label = st.session_state.board[i] if st.session_state.board[i] else " "
             if interactive and not st.session_state.winner:
                 if cols[c].button(label, key=f"cell_{i}"):
                     make_move(i)
                     # If vs computer and it's O's turn, let AI move immediately
-                    if (st.session_state.mode.startswith("Vs Computer")
+                    if (
+                        st.session_state.mode.startswith("Vs Computer")
                         and st.session_state.player == "O"
-                        and not st.session_state.winner):
+                        and not st.session_state.winner
+                    ):
                         computer_move_random()
             else:
                 # Static tiles (after game ends)
                 is_win = i in st.session_state.win_combo
-                klass = "tile win" if is_win else "tile draw" if st.session_state.winner=="Draw" else "tile"
+                klass = (
+                    "tile win"
+                    if is_win
+                    else "tile draw" if st.session_state.winner == "Draw" else "tile"
+                )
                 cols[c].markdown(f"<div class='{klass}'>{label}</div>", unsafe_allow_html=True)
+
 
 # During play, show interactive buttons; after end, show colored tiles
 render_board(interactive=(st.session_state.winner is None))
 
 # Friendly help text
-st.markdown("""
+st.markdown(
+    """
 <div class='help'>
 • Click a square to place your mark. Winning line will glow cyan.<br>
 • In <b>Vs Computer</b>, you are <b>X</b>. The computer plays random <b>O</b> moves.<br>
 • Use <b>Reset Board</b> to start a new match. Have fun!
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)

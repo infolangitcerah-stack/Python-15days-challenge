@@ -19,7 +19,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.write("🎉 Welcome to the **Colorful Calculator**! Enter two numbers and pick an operation ➕➖✖️➗")
+st.write(
+    "🎉 Welcome to the **Colorful Calculator**! Enter two numbers and pick an operation ➕➖✖️➗"
+)
 
 # ------------------------------
 # CALCULATOR INPUTS
@@ -34,7 +36,7 @@ with col2:
 operation = st.radio(
     "Choose operation",
     ("➕ Addition", "➖ Subtraction", "✖️ Multiplication", "➗ Division"),
-    horizontal=True
+    horizontal=True,
 )
 
 # ------------------------------

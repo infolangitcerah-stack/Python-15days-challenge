@@ -1,5 +1,5 @@
-import streamlit as st
 import pandas as pd
+import streamlit as st
 
 # ------------------------------
 # HEADER
@@ -83,10 +83,9 @@ with tab2:
         )
 
         # Format table with 2 decimals
-        styled_df = st.session_state.df.style.format({
-            "Expense": "{:.2f}",
-            "Balance": "{:.2f}"
-        }).background_gradient(cmap="YlGnBu")
+        styled_df = st.session_state.df.style.format(
+            {"Expense": "{:.2f}", "Balance": "{:.2f}"}
+        ).background_gradient(cmap="YlGnBu")
 
         st.dataframe(styled_df, use_container_width=True)
     else:
@@ -146,9 +145,3 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-
-
-
-
-

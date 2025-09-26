@@ -1,11 +1,12 @@
 # app.py
-import streamlit as st
-import pandas as pd
-from io import BytesIO
 from datetime import datetime
+from io import BytesIO
+
+import pandas as pd
+import streamlit as st
 from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
 from reportlab.lib.units import mm
+from reportlab.pdfgen import canvas
 
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
@@ -60,7 +61,7 @@ st.markdown(
     }}
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 # ----------------- WRAP EVERYTHING -----------------
@@ -84,7 +85,9 @@ with col1:
     tax_rate = st.slider("Tax (%)", 0.0, 15.0, 6.0, 0.5)
 with col2:
     accent = st.color_picker("Accent Color", ACCENT_DEFAULT)
-    st.markdown(f"<style>.stDownloadButton > button{{background:{accent};}}</style>", unsafe_allow_html=True)
+    st.markdown(
+        f"<style>.stDownloadButton > button{{background:{accent};}}</style>", unsafe_allow_html=True
+    )
 
 bill_title = st.text_input("Invoice Title", "Social Eagle — Day 11 Assignment")
 customer_name = st.text_input("Customer Name (optional)", "")
@@ -134,17 +137,23 @@ for cat in categories:
         c2.write(f"{m['Price']:.2f}")
         qty = c3.number_input(
             label=f"qty_{m['Item']}",
-            min_value=0, max_value=20, step=1, value=0, key=f"qty_{m['Item']}"
+            min_value=0,
+            max_value=20,
+            step=1,
+            value=0,
+            key=f"qty_{m['Item']}",
         )
         if qty > 0:
-            selected_rows.append({
-                "Item": m["Item"],
-                "Unit Price (RM)": m["Price"],
-                "Quantity": qty,
-                "Line Total (RM)": m["Price"] * qty,
-            })
+            selected_rows.append(
+                {
+                    "Item": m["Item"],
+                    "Unit Price (RM)": m["Price"],
+                    "Quantity": qty,
+                    "Line Total (RM)": m["Price"] * qty,
+                }
+            )
 
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -219,7 +228,9 @@ if selected_rows:
 
         y = 20 * mm
         c.setFont("Helvetica-Oblique", 9)
-        c.drawCentredString(width / 2, y, "Thank you for dining with us! — Social Eagle GenAI Architect")
+        c.drawCentredString(
+            width / 2, y, "Thank you for dining with us! — Social Eagle GenAI Architect"
+        )
         c.showPage()
         c.save()
         pdf = buf.getvalue()
@@ -235,14 +246,16 @@ if selected_rows:
     )
     colB.download_button(
         "⬇️ Download PDF",
-        data=invoice_pdf_bytes(bill_df, subtotal, tax_rate, tax_amount, total, bill_title, customer_name),
+        data=invoice_pdf_bytes(
+            bill_df, subtotal, tax_rate, tax_amount, total, bill_title, customer_name
+        ),
         file_name=f"invoice_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf",
         mime="application/pdf",
     )
 
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 else:
     st.info("👉 Select some items to generate your bill and download invoice.")
 
 # ----------------- CLOSE MAIN CONTAINER -----------------
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
