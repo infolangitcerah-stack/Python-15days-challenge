@@ -9,29 +9,28 @@
 > 🌱 A 15-day journey of building Python projects — from fundamentals to GUIs and games.  
 > 🙌 With gratitude to mentors and peers who supported this challenge.
 
----
-
 ## 📅 15 Days Python Challenge Index  
 
 | Day | Folder | Project |
-|-----|--------|----------|
-| 01 | [`15days-challenge/day_01`](15days-challenge/day_01) | 📝 Day 1 – Build a Form |
-| 02 | [`15days-challenge/day_02`](15days-challenge/day_02) | 💰 Day 2 – Smart Expense Splitter |
-| 03 | [`15days-challenge/day_03`](15days-challenge/day_03) | ➕➖✖️➗ Day 3 – Simple Calculator |
-| 04 | [`15days-challenge/day_04`](15days-challenge/day_04) | 🏋️ Day 4 – BMI Calculator |
-| 05 | [`15days-challenge/day_05`](15days-challenge/day_05) | 🔄 Day 5 – Unit Converter |
-| 06 | [`15days-challenge/day_06`](15days-challenge/day_06) | 💧 Day 6 – Water Intake Tracker |
-| 07 | [`15days-challenge/day_07`](15days-challenge/day_07) | 🏋️ Day 7 – Gym Workout Logger |
-| 08 | [`15days-challenge/day_08`](15days-challenge/day_08) | 💱 Day 8 – Currency Converter |
-| 09 | [`15days-challenge/day_09`](15days-challenge/day_09) | 🎉 Day 9 – Event Registration System |
-| 10 | [`15days-challenge/day_10`](15days-challenge/day_10) | 🎉 Day 10 – Event Registration System (v2) |
-| 11 | [`15days-challenge/day_11`](15days-challenge/day_11) | 🍔 Day 11 – Restaurant Order & Billing App |
-| 12 | [`15days-challenge/day_12`](15days-challenge/day_12) | ❌⭕ Day 12 – Tic-Tac-Toe |
-| 13 | [`15days-challenge/day_13`](15days-challenge/day_13) | 🪨📜✂️ Day 13 – Rock, Paper, Scissors |
-| 14 | [`15days-challenge/day_14`](15days-challenge/day_14) | ⏱️ Day 14 – Stopwatch (Start / Stop / Reset) |
-| 15 | [`15days-challenge/day_15`](15days-challenge/day_15) | 🐍 Day 15 – Snake Game |
+|-----|---------|---------|
+| 01  | [day_01](15days-challenge/day_01) | 🎉 Day 1 – Hello World & Basics 🐍 |
+| 02  | [day_02](15days-challenge/day_02) | 🎉 Day 2 – Calculator App ➕➖✖️➗ |
+| 03  | [day_03](15days-challenge/day_03) | 🎉 Day 3 – Number Guessing Game 🎯 |
+| 04  | [day_04](15days-challenge/day_04) | 🎉 Day 4 – To-Do List App ✅ |
+| 05  | [day_05](15days-challenge/day_05) | 🎉 Day 5 – Password Generator 🔐 |
+| 06  | [day_06](15days-challenge/day_06) | 🎉 Day 6 – Rock Paper Scissors ✊✋✌️ |
+| 07  | [day_07](15days-challenge/day_07) | 🎉 Day 7 – Currency Converter 💱 |
+| 08  | [day_08](15days-challenge/day_08) | 🎉 Day 8 – Weather App 🌦️ |
+| 09  | [day_09](15days-challenge/day_09) | 🎉 Day 9 – Quiz Game App ❓ |
+| 10  | [day_10](15days-challenge/day_10) | 🎉 Day 10 – Event Registration System 📝 |
+| 11  | [day_11](15days-challenge/day_11) | 🎉 Day 11 – File Organizer 📂 |
+| 12  | [day_12](15days-challenge/day_12) | 🎉 Day 12 – Blog CMS ✍️ |
+| 13  | [day_13](15days-challenge/day_13) | 🎉 Day 13 – Chat Application 💬 |
+| 14  | [day_14](15days-challenge/day_14) | 🎉 Day 14 – GUI App with Tkinter 🖥️ |
+| 15  | [day_15](15days-challenge/day_15) | 🎉 Day 15 – Snake Game 🐍🎮 |
 
----
+ ✨🌱✨🌱✨🌱✨🌱✨🌱✨
+
 ## 🔮 What’s Next
 This challenge is complete ✅  
 Next, I’ll:
